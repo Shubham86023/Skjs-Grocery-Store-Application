@@ -1,0 +1,46 @@
+<div class="header-top bg-main">
+    <div class="container">
+        <div class="top-bar left hidden-xs1">
+            <ul class="horizontal-menu">
+                <li style="color: white">Free Shipping for all Order above 500₹</li>
+            </ul>
+        </div>
+        <div class="top-bar right">
+            <div class="primary-menu">
+                <ul class="horizontal-menu" th:if="${!is_login && !bis_login}">
+                    <li>
+                        <a class="login-link" href="/signupBusiness"><i class="biolife-icon"></i>Become a Seller</a>
+                    </li>
+                    <li style="margin-left: 0">
+                        <a class="login-link" href="/login"><i class="biolife-icon icon-login"></i>Login/Register</a>
+                    </li>
+                </ul>
+                <ul class="menu biolife-menu clone-main-menu clone-primary-menu" data-menuname="main menu"
+                    id="primary-menu"
+                    th:if="${is_login}">
+                    <li class="menu-item menu-item-has-children has-child">
+                        <a class="login-link" href="" th:text="${user_name}"></a>
+                        <ul class="sub-menu" style="width: 140px">
+                            <li class="menu-item"><a href="/editProfile">Edit Profile</a></li>
+                            <li class="menu-item"><a href="/placedOrders">Order history</a></li>
+                            <li class="menu-item"><a href="/logout">Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="menu biolife-menu clone-main-menu clone-primary-menu" data-menuname="main menu"
+                    id="primary-menu"
+                    th:if="${bis_login}">
+                    <li class="menu-item menu-item-has-children has-child">
+                        <a class="login-link" href="" th:text="${buser_name}"></a>
+                        <ul class="sub-menu" style="width: 140px">
+                            <li class="menu-item"><a href="/bEditProfile">Edit Profile</a></li>
+                            <li class="menu-item"><a href="/updatePersonalInfo">Business Details</a></li>
+                            <li class="menu-item"><a href="/placedOrders">Order History</a></li>
+                            <li class="menu-item"><a href="/blogout">Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

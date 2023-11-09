@@ -1,0 +1,126 @@
+<footer class="footer layout-03" id="footer">
+    <div class="footer-content background-footer-03" style="background-color: lightgrey">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <section class="footer-item">
+                        <a class="logo footer-logo" href="/"><img alt="biolife logo"
+                                                                  height="34" src="/assets/productImages/skjs_logo2.png"
+                                                                  width="135"/></a>
+                        <div class="footer-phone-info">
+                            <i class="biolife-icon icon-head-phone"></i>
+                            <p class="r-info">
+                                <span>Got Questions ?</span>
+                                <span>(+91) 860-235-1571</span>
+                            </p>
+                        </div>
+                        <div class="newsletter-block layout-01" style="max-width: 450px">
+                            <h4 class="title">Signup For Getting New Product Info</h4>
+                            <p class="rMessage" style="font-size: 20px; font-weight: 600; display: none"></p>
+                            <div class="form-content">
+                                <input class="input-text email" id="email" placeholder="Your email here..." type="email"
+                                       value=""/>
+                                <button class="bnt-submit" id="submitSignUp" name="signup" type="submit">Sign up
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-4 col-md-2 col-sm-6 md-margin-top-5px sm-margin-top-50px xs-margin-top-40px"></div>
+                <div class="col-lg-4 col-md-6 col-sm-12 md-margin-top-5px sm-margin-top-50px xs-margin-top-40px">
+                    <section class="footer-item">
+                        <h3 class="section-title">Transport Offices</h3>
+                        <div class="contact-info-block footer-layout xs-padding-top-10px">
+                            <ul class="contact-lines">
+                                <li>
+                                    <p class="info-item">
+                                        <i class="biolife-icon icon-location"></i>
+                                        <b class="desc">BH-15 Bapat Square Sukhliya, Indore (Madhaya Pradesh)</b>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="info-item">
+                                        <i class="biolife-icon icon-phone"></i>
+                                        <b class="desc">Phone: (+91) 860 235 1571</b>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="info-item">
+                                        <i class="biolife-icon icon-letter"></i>
+                                        <b class="desc">Email: shu88210@gmail.com</b>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="info-item">
+                                        <i class="biolife-icon icon-clock"></i>
+                                        <b class="desc">Hours: 7 Days a week from 10:00 am</b>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="separator sm-margin-top-70px xs-margin-top-40px"></div>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-12"></div>
+                <div class="col-lg-6 col-sm-6 col-xs-12">
+                    <div class="payment-methods">
+                        <ul>
+                            <li>
+                                <img alt="" height="36" src="/assets/productImages/card1.jpg" width="51"/>
+                            </li>
+                            <li>
+                                <img alt="" height="36" src="/assets/productImages/card2.jpg" width="51"/>
+                            </li>
+                            <li>
+                                <img alt="" height="36" src="/assets/productImages/card3.jpg" width="51"/>
+                            </li>
+                            <li>
+                                <img alt="" height="36" src="/assets/productImages/card4.jpg" width="51"/>
+                            </li>
+                            <li>
+                                <img alt="" height="36" src="/assets/productImages/card5.jpg" width="51"/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="/assets/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+      $("#submitSignUp").click(function () {
+        var email = $("#email").val();
+        if (email != "") {
+          $.ajax({
+            url: "/savingEmailsForNewProduct",
+            method: "POST",
+            data: {
+              email: email,
+            },
+            success: function (data) {
+              if (data == 1) {
+                $("#email").val("");
+                $(".rMessage").css("display", "block");
+                $(".rMessage").css("color", "green");
+                $(".rMessage").html("Thanks for providing your Email.");
+                $(".rMessage").delay(3000).fadeOut("slow");
+              } else {
+                $(".rMessage").css("display", "block");
+                $(".rMessage").css("color", "red");
+                $(".rMessage").html("Oops..This email already Exist.");
+                $(".rMessage").delay(3000).fadeOut("slow");
+              }
+            },
+          });
+        } else {
+          alert("Enter an Email.");
+        }
+      });
+    });
+</script>

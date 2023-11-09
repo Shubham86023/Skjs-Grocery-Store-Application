@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Personal Info | Skjs Grocery Store</title>
+    <link href="https://fonts.googleapis.com/css?family=Cairo:400,600,700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400i,700i" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&amp;display=swap" rel="stylesheet"/>
+    <link href="assets/productImages/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/animate.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/nice-select.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/slick.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
+    <th:block th:insert="~{themes}"></th:block>
+</head>
+<style>
+    .nice-select {
+      width: 180px;
+      right: 70px !important;
+    }
+    .search_button {
+      width: 60px !important;
+    }
+    a {
+      text-decoration: auto !important;
+    }
+    .block1_links {
+      font-family: "Cairo";
+      color: #7faf51 !important;
+      font-size: 30px !important;
+    }
+
+    .tbl_head {
+      font-weight: 700;
+    }
+
+    #product_list_wrapper {
+      font-size: 20px !important;
+    }
+
+    .form_field {
+      font-size: 17px;
+      height: 35px;
+      border: 1px solid !important;
+      border-radius: 0.375rem !important;
+    }
+    .bottom_buttons {
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.42857143;
+      padding: 6px 12px;
+    }
+    .has-feedback .form-control {
+      padding-right: 7.5px;
+    }
+
+    .stepwizard {
+      display: table;
+      width: 100%;
+      position: relative;
+    }
+    .stepwizard-row {
+      display: table-row;
+    }
+    .stepwizard-step {
+      display: table-cell;
+      text-align: center;
+      position: relative;
+    }
+    .stepwizard-row:before {
+      top: 14px;
+      bottom: 0;
+      position: absolute;
+      content: " ";
+      width: 100%;
+      height: 1px;
+      background-color: #ccc;
+    }
+    .x_panel {
+      border: 1px solid #e6e9ed;
+      padding: 10px 17px;
+    }
+    .x_title {
+      padding: 1px 5px 6px;
+      margin-bottom: 10px;
+    }
+    .x_title h2 small {
+      margin-left: 10px;
+      font-size: 14px;
+    }
+    label {
+      font-weight: 600;
+    }
+</style>
+<body class="biolife-body">
+<!-- HEADER -->
+<!-- row1 -->
+<header class="header-area style-01 layout-03" id="header">
+    <div th:insert="~{header_section1}"></div>
+    <!-- row2 -->
+    <div th:insert="~{header}"></div>
+</header>
+<!-- Page Contain -->
+
+<div class="page-contain">
+    <div class="main-content" id="main-content">
+        <!--Block 01: Main slide-->
+        <div class="container" style="font-size: 17px; margin-top: 10px">
+            <a href="/bwelcome"><i aria-hidden="true" class="fa fa-arrow-left"></i> Back to Home</a>
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>
+                        <strong style="color: #7faf51">Business Information</strong><small>Fields mark with <span
+                            style="color: red">*</span> are mandatory</small>
+                    </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="form-group" th:if="${message}">
+                    <div class="input-icon">
+                        <div class="alert alert-dismissible" id="successMessage" th:classappend="${messageType}"
+                             th:text="${message}"></div>
+                    </div>
+                </div>
+                <div class="x_content">
+                    <form action="updatingPersonalInfo" method="post" th:object="${business_details}">
+                        <div class="row">
+                            <div class="col-xs-12 New-Enquiry">
+                                <div class="col-md-12 New-Enquiry">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                                        <label>Store Name <span style="color: red">*</span></label>
+                                        <textarea class="form-control has-feedback-left form_field" id="storeName"
+                                                  name="storeName" placeholder="Enter Store Name..."
+                                                  required th:text="${business_details.storeName}"
+                                                  type="text"></textarea>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                                        <label>Address<span style="color: red">*</span></label>
+                                        <textarea class="form-control has-feedback-left form_field" id="address"
+                                                  name="address" placeholder="Enter Address..."
+                                                  required th:text="${business_details.address}"
+                                                  type="text"></textarea>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
+                                        <label>PinCode<span style="color: red">*</span></label>
+                                        <input class="form-control has-feedback-left form_field" id="pincode"
+                                               maxlength="6"
+                                               name="pincode" placeholder="Enter PinCode"
+                                               required th:value="${business_details.pincode}" type="number"/>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
+                                        <label>City<span style="color: red">*</span></label>
+                                        <input class="form-control has-feedback-left form_field" id="city" name="city"
+                                               placeholder="Enter City"
+                                               required th:value="${business_details.city}"
+                                               type="text"/>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
+                                        <label>State<span style="color: red">*</span></label>
+                                        <input class="form-control has-feedback-left form_field" id="state" name="state"
+                                               placeholder="Enter State"
+                                               required th:value="${business_details.state}"
+                                               type="text"/>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback New-Enquiryraj1">
+                                        <h5 style="text-align: center; font-size: 17px; background-color: #7faf51; padding: 5px; color: #e73918">
+                                            Bank Details</h5>
+                                    </div>
+                                    <div class="col-md-3 col-sm-4 col-xs-12 form-group has-feedback">
+                                        <label>Bank Name <span style="color: red">*</span></label>
+                                        <input class="form-control has-feedback-left form_field" id="bankName"
+                                               name="bankName"
+                                               placeholder="Enter Bank Name" required
+                                               th:value="${business_details.bankName}" type="text"/>
+                                    </div>
+                                    <div class="col-md-3 col-sm-4 col-xs-12 form-group has-feedback">
+                                        <label>Account No. <span style="color: red">*</span></label>
+                                        <input class="form-control has-feedback-left form_field" id="accountNo"
+                                               name="accountNo"
+                                               placeholder="Enter Account No." required
+                                               th:value="${business_details.accountNo}" type="number"/>
+                                    </div>
+                                    <div class="col-md-3 col-sm-4 col-xs-12 form-group has-feedback">
+                                        <label>IFSC Code <span style="color: red">*</span></label>
+                                        <input class="form-control has-feedback-left form_field" id="ifscCode"
+                                               name="ifscCode"
+                                               placeholder="Enter IFSC Code" required
+                                               th:value="${business_details.ifscCode}" type="text"/>
+                                    </div>
+                                    <div class="col-md-3 col-sm-4 col-xs-12 form-group has-feedback">
+                                        <label>Branch Name</label>
+                                        <input class="form-control has-feedback-left form_field" id="branchName"
+                                               name="branchName"
+                                               placeholder="Enter Branch Name" th:value="${business_details.branchName}"
+                                               type="text"/>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback"
+                                         style="margin-top: 30px">
+                                        <div class="New-Enquiry2" style="display: flex; gap: 10px">
+                                            <button class="btn btn-success pull-left bottom_buttons" id="submit_but"
+                                                    type="submit"><i aria-hidden="true" class="fa fa-floppy-o"></i>&nbsp;
+                                                Save
+                                            </button>
+                                            <button class="btn btn-primary bottom_buttons" id="reset" type="reset"><i
+                                                    aria-hidden="true" class="fa fa-repeat"></i> Reset
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FOOTER -->
+<div style="margin-top: 50px" th:insert="~{footer}"></div>
+
+<!--Footer For Mobile-->
+<div th:insert="~{footer_section1}"></div>
+
+<!-- Scroll Top Button -->
+<a class="btn-scroll-top"><i class="biolife-icon icon-left-arrow"></i></a>
+
+<script src="assets/js/jquery-3.4.1.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.countdown.min.js"></script>
+<script src="assets/js/jquery.nice-select.min.js"></script>
+<script src="assets/js/jquery.nicescroll.min.js"></script>
+<script src="assets/js/slick.min.js"></script>
+<script src="assets/js/biolife.framework.js"></script>
+<script src="assets/js/functions.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+        src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c="
+        src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+
+<script type="text/javascript">
+    var table;
+    $(document).ready(function () {
+      setTimeout(function () {
+        $(".alert").alert("close");
+      }, 3000);
+    });
+</script>
+</body>
+</html>

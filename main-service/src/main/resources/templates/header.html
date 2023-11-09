@@ -1,0 +1,259 @@
+<header style="border-bottom: 1px solid gray">
+    <div class="header-middle biolife-sticky-object" style="padding: 15px 0 5px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-md-6 col-xs-6">
+                    <a class="biolife-logo" href="/"><img alt="biolife logo" height="34"
+                                                          src="/assets/productImages/skjs_logo2.png" width="135"/></a>
+                </div>
+
+                <div class="header-bottom hidden-sm hidden-xs">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-10 col-md-8 padding-top-2px">
+                                <div class="header-search-bar layout-01">
+                                    <form action="/searchResults/10" class="form-search" method="post"
+                                          name="desktop-seacrh" th:object="${searchData}">
+                                        <input name="isSearch" type="hidden" value="1"/>
+                                        <input class="input-text" id="header_search" name="srchWithKywrd"
+                                               placeholder="Search here..."
+                                               required th:value="${header_search}" type="text"/>
+                                        <select name="srchWithCtgry2">
+                                            <option value="">Pick a Category</option>
+                                            <option th:each="cat : ${categories1}"
+                                                    th:selected="${header_search_select == cat.id}"
+                                                    th:text="${cat.cat2Name}"
+                                                    th:value="${cat.id}"></option>
+                                        </select>
+                                        <button class="btn-submit search_button" type="submit">
+                                            <i class="biolife-icon icon-search"></i>
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <div class="biolife-cart-info">
+                                    <div class="minicart-block layout-02">
+                                        <div class="minicart-contain">
+                                            <div class="icon-contain">
+                                                <a class="span-index" href="/yourCart">
+                                                    <i class="icon-cart-mini biolife-icon"></i>
+                                                    <span class="sub-total"
+                                                          th:text="${qtyAmount[1]} +' items - ₹'+ ${qtyAmount[0]}"></span>
+                                                </a>
+                                                <a class="btn-to-cart" href="/yourCart">Go</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-middle biolife-sticky-object" style="padding: 0 0 10px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 hidden-sm hidden-xs">
+                    <div class="primary-menu">
+                        <ul class="menu biolife-menu clone-main-menu clone-primary-menu" data-menuname="main menu"
+                            id="primary-menu" style="width: max-content">
+                            <li class="menu-item"><a href="/">Home</a></li>
+                            <li class="menu-item menu-item-has-children has-megamenu">
+                                <a class="menu-name" data-title="Shop" href="#">Food Products</a>
+                                <div class="wrap-megamenu lg-width-900 md-width-750">
+                                    <div class="mega-content">
+                                        <div class="col-lg-3 col-md-3 col-xs-12 md-margin-bottom-0 xs-margin-bottom-25">
+                                            <div class="wrap-custom-menu vertical-menu">
+                                                <h4 class="menu-title">Fruits & Vegetables</h4>
+                                                <ul class="menu">
+                                                    <li><a href="/products/1/10">Fresh vegetables</a></li>
+                                                    <li><a href="/products/2/10">Fresh Fruits</a></li>
+                                                    <li><a href="/products/3/10">Herbs & Seasonings</a></li>
+                                                    <li><a href="/products/4/10">Organic Fruits & Veggies</a></li>
+                                                    <li><a href="/products/5/10">Flower Bouquets</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-xs-12 md-margin-bottom-0 xs-margin-bottom-25">
+                                            <div class="wrap-custom-menu vertical-menu">
+                                                <h4 class="menu-title">Foodgrains, Oil, Spices</h4>
+                                                <ul class="menu">
+                                                    <li><a href="/products/6/10">Oats,Flours & rice</a></li>
+                                                    <li><a href="/products/7/10">Pulses</a></li>
+                                                    <li><a href="/products/8/10">Edible Oils</a></li>
+                                                    <li><a href="/products/9/10">Salt,Sugar</a></li>
+                                                    <li><a href="/products/10/10">Spices & Dry fruits</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-xs-12 md-margin-bottom-0 xs-margin-bottom-25">
+                                            <div class="wrap-custom-menu vertical-menu">
+                                                <h4 class="menu-title">Bakery,Dairy Products</h4>
+                                                <ul class="menu">
+                                                    <li><a href="/products/11/10">Dairy</a></li>
+                                                    <li><a href="/products/12/10">Breads & Buns</a></li>
+                                                    <li><a href="/products/13/10">Cakes & Pastries</a></li>
+                                                    <li><a href="/products/14/10">Ice Creams</a></li>
+                                                    <li><a href="/products/15/10">Cookies,Biscuits</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-xs-12 md-margin-bottom-0 xs-margin-bottom-25">
+                                            <div class="wrap-custom-menu vertical-menu">
+                                                <h4 class="menu-title">Beverages</h4>
+                                                <ul class="menu">
+                                                    <li><a href="/products/16/10">Soft Drinks</a></li>
+                                                    <li><a href="/products/17/10">Water</a></li>
+                                                    <li><a href="/products/18/10">Tea, Coffee</a></li>
+                                                    <li><a href="/products/19/10">Fruit juices</a></li>
+                                                    <li><a href="/products/20/10">Health & Energy drinks</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="menu-item menu-item-has-children has-megamenu">
+                                <a class="menu-name" data-title="Demo" href="#">Beauty & Hygiene</a>
+                                <div class="wrap-megamenu lg-width-800 md-width-750">
+                                    <div class="mega-content">
+                                        <div class="col-lg-3 col-md-3 col-xs-12 md-margin-bottom-0 xs-margin-bottom-25">
+                                            <div class="wrap-custom-menu vertical-menu">
+                                                <h4 class="menu-title">Hair & Skin Care</h4>
+                                                <ul class="menu">
+                                                    <li><a href="/products/21/10">Hair Oils,Serum</a></li>
+                                                    <li><a href="/products/22/10">Shampoo & Conditioners</a></li>
+                                                    <li><a href="/products/23/10">Hair Styling</a></li>
+                                                    <li><a href="/products/24/10">Creams & Lotions</a></li>
+                                                    <li><a href="/products/25/10">Other Products</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-xs-12 md-margin-bottom-0 xs-margin-bottom-25">
+                                            <div class="wrap-custom-menu vertical-menu">
+                                                <h4 class="menu-title">Bath,Hand Wash,Oral</h4>
+                                                <ul class="menu">
+                                                    <li><a href="/products/26/10">Bathing Bars,Soaps</a></li>
+                                                    <li><a href="/products/27/10">Bathing Accessories</a></li>
+                                                    <li><a href="/products/28/10">HandWash,Sanitizers</a></li>
+                                                    <li><a href="/products/29/10">Toothpaste,brush</a></li>
+                                                    <li><a href="/products/30/10">Mouthwash</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-xs-12 md-margin-bottom-0 xs-margin-bottom-25">
+                                            <div class="wrap-custom-menu vertical-menu">
+                                                <h4 class="menu-title">Mens Grooming</h4>
+                                                <ul class="menu">
+                                                    <li><a href="/products/31/10">Shaving Care</a></li>
+                                                    <li><a href="/products/32/10">Deodorants,Parfume</a></li>
+                                                    <li><a href="/products/33/10">Talc,Gels</a></li>
+                                                    <li><a href="/products/34/10">Other Products</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-xs-12 md-margin-bottom-0 xs-margin-bottom-25">
+                                            <div class="wrap-custom-menu vertical-menu">
+                                                <h4 class="menu-title">Makeup & Feminine Hygiene</h4>
+                                                <ul class="menu">
+                                                    <li><a href="/products/35/10">Sanitary Napkins</a></li>
+                                                    <li><a href="/products/36/10">Makeup Accessories</a></li>
+                                                    <li><a href="/products/37/10">Women Deodorants</a></li>
+                                                    <li><a href="/products/38/10">Nails,face,eyes Makeup</a></li>
+                                                    <li><a href="/products/39/10">Other Products</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="menu-item menu-item-has-children has-child">
+                                <a class="menu-name" data-title="Products" href="#">Cleaning & Household</a>
+                                <ul class="sub-menu">
+                                    <li class="menu-item menu-item-has-children has-child">
+                                        <a class="menu-name" data-title="Detergrents & Dishwash" href="#">Detergrents &
+                                            Dishwash</a>
+                                        <ul class="sub-menu">
+                                            <li class="menu-item">
+                                                <a href="/products/40/10">Detergrents Powder,Liquid</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="/products/41/10">Detergents Bars</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="/products/42/10">Febric Pre,Post wash</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="/products/43/10">Dishwash Bars,Liquids</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item menu-item-has-children has-child">
+                                        <a class="menu-name" data-title="Fresheners & Repellents" href="#">Fresheners &
+                                            Repellents</a>
+                                        <ul class="sub-menu">
+                                            <li class="menu-item">
+                                                <a href="/products/44/10">Air Fresheners</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="/products/45/10">Mosquito Repellents</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="/products/46/10">Insects Repellents</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item menu-item-has-children has-child">
+                                        <a class="menu-name" data-title="All Purpose Cleaners" href="#">All Purpose
+                                            Cleaners</a>
+                                        <ul class="sub-menu">
+                                            <li class="menu-item">
+                                                <a href="/products/47/10">Toilet Cleaner</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="/products/48/10">Kitchen,Floor Cleaning</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="/products/49/10">Disinfectant Spray</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="/products/50/10">Other Products</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item menu-item-has-children has-child">
+                                        <a class="menu-name" data-title="Stationery Items" href="#">Stationery Items</a>
+                                        <ul class="sub-menu">
+                                            <li class="menu-item">
+                                                <a href="/products/51/10">Notebooks,Files</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="/products/52/10">Pen,Pencils</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="/products/53/10">Art & Colors</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="/products/54/10">Other Products</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="live-info">
+                    <p class="telephone"><i aria-hidden="true" class="fa fa-phone"></i><b class="phone-number"> (+91)
+                        860 235 1571</b></p>
+                    <p class="working-time">Mon-Fri: 8:30am-7:30pm; Sat-Sun: 9:30am-4:30pm</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

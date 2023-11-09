@@ -1,0 +1,299 @@
+<div class="product-tab z-index-20 sm-margin-top-150px xs-margin-top-30px">
+    <div class="container">
+        <div class="biolife-title-box biolife-title-box__icon-at-top-style hidden-icon-on-mobile">
+            <span class="icon-at-top biolife-icon icon-organic"></span>
+            <span class="subtitle">All the best item for You</span>
+            <h3 class="main-title">Featured Categories</h3>
+        </div>
+
+        <div class="biolife-tab biolife-tab-contain sm-margin-top-32px">
+            <div class="tab-head tab-head__icon-top-layout icon-top-layout">
+                <ul class="tabs md-margin-bottom-35-im xs-margin-bottom-40-im">
+                    <li class="tab-element active">
+                        <!-- <a href="#tab01_1st" class="tab-link"><span class="biolife-icon icon-broccoli"></span>Veggies & Fruits</a> -->
+                        <a class="tab-link" href="#tab01_1st"><i aria-hidden="true" class="fa fa-carrot"
+                                                                 style="font-size: 50px"></i> <span
+                                class="biolife-icon"></span>Veggies & Fruits</a>
+                    </li>
+                    <li class="tab-element">
+                        <a class="tab-link" href="#tab01_2nd"><i aria-hidden="true" class="fa fa-glass-cheers"
+                                                                 style="font-size: 50px"></i> <span
+                                class="biolife-icon"></span>Beverages</a>
+                    </li>
+                    <li class="tab-element">
+                        <a class="tab-link" href="#tab01_3rd"><i aria-hidden="true" class="fa fa-bath"
+                                                                 style="font-size: 50px"></i> <span
+                                class="biolife-icon"></span>Care</a>
+                    </li>
+                    <li class="tab-element">
+                        <a class="tab-link" href="#tab01_4th"><i aria-hidden="true" class="fa fa-spa"
+                                                                 style="font-size: 50px"></i><span
+                                class="biolife-icon"></span>Beauti</a>
+                    </li>
+                    <li class="tab-element">
+                        <a class="tab-link" href="#tab01_5th"><i aria-hidden="true" class="fa fa-sink"
+                                                                 style="font-size: 50px"></i><span
+                                class="biolife-icon"></span>Cleaning</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div class="tab-contain active" id="tab01_1st">
+                    <ul
+                            class="products-list biolife-carousel nav-center-02 nav-none-on-mobile eq-height-contain"
+                            data-slick='{"rows":1,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":6, "responsive":[
+            {"breakpoint":1200, "settings":{ "slidesToShow": 5, "slidesMargin": 15}},
+            {"breakpoint":1050, "settings":{ "slidesToShow": 4, "slidesMargin": 15}},
+            {"breakpoint":800, "settings":{ "slidesToShow": 3, "slidesMargin": 15}},
+            {"breakpoint":580, "settings":{ "slidesToShow": 2, "slidesMargin": 15}}
+            ]}'
+                    >
+                        <li class="product-item" th:each="product : ${fruitAndVeggies}">
+                            <div class="contain-product layout-default" style="border: 1px solid lightgray">
+                                <div class="product-thumb">
+                                    <a class="link-to-product" th:href="@{/productDetail/{id} (id=${product[0]})}">
+                                        <img alt="Vegetables"
+                                             class="product-thumnail"
+                                             style="width: 218px !important; height: 218px !important"
+                                             th:src="@{productImages/product1/{pid}/{name}(name=${product[1]},pid=${product[0]})}"/>
+                                    </a>
+                                    <a class="lookup btn_call_quickview"
+                                       th:href="@{/productDetail/{id} (id=${product[0]})}"><i
+                                            class="biolife-icon icon-search"></i></a>
+                                </div>
+                                <div class="info">
+                                    <b class="categories" th:text="${product[2]}"></b>
+                                    <h4 class="product-title">
+                                        <a class="pr-name" th:href="@{/productDetail/{id} (id=${product[0]})}"
+                                           th:text="${product[3]}"></a>
+                                    </h4>
+                                    <div class="price">
+                                        <ins><span class="price-amount" th:text="'₹'+ ${product[4]}"></span></ins>
+                                        <del><span class="price-amount" th:text="'₹'+ ${product[5]}"></span></del>
+                                    </div>
+                                    <div class="slide-down-box">
+                                        <p class="message">All products are carefully selected to ensure food
+                                            safety.</p>
+                                        <div class="buttons">
+                                            <a class="btn add-to-cart-btn"
+                                               th:href="@{/shoppingCart/{id}/1 (id=${product[0]})}"
+                                               th:if="${product[6]} > 0"><i aria-hidden="true"
+                                                                            class="fa fa-cart-arrow-down"></i>add to
+                                                cart</a>
+                                            <p style="color: red; font-size: 25px; text-align: center"
+                                               th:unless="${product[6]} > 0">Out of Stock</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-contain" id="tab01_2nd">
+                    <ul
+                            class="products-list biolife-carousel nav-center-02 nav-none-on-mobile eq-height-contain"
+                            data-slick='{"rows":1,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":6, "responsive":[
+            {"breakpoint":1200, "settings":{ "slidesToShow": 5, "slidesMargin": 15}},
+            {"breakpoint":1050, "settings":{ "slidesToShow": 4, "slidesMargin": 15}},
+            {"breakpoint":800, "settings":{ "slidesToShow": 3, "slidesMargin": 15}},
+            {"breakpoint":580, "settings":{ "slidesToShow": 2, "slidesMargin": 15}}
+            ]}'
+                    >
+                        <li class="product-item" th:each="product : ${beverages}">
+                            <div class="contain-product layout-default" style="border: 1px solid lightgray">
+                                <div class="product-thumb">
+                                    <a class="link-to-product" th:href="@{/productDetail/{id} (id=${product[0]})}">
+                                        <img alt="Vegetables"
+                                             class="product-thumnail"
+                                             style="width: 218px !important; height: 218px !important"
+                                             th:src="@{productImages/product1/{pid}/{name}(name=${product[1]},pid=${product[0]})}"/>
+                                    </a>
+                                    <a class="lookup btn_call_quickview"
+                                       th:href="@{/productDetail/{id} (id=${product[0]})}"><i
+                                            class="biolife-icon icon-search"></i></a>
+                                </div>
+                                <div class="info">
+                                    <b class="categories" th:text="${product[2]}"></b>
+                                    <h4 class="product-title">
+                                        <a class="pr-name" th:href="@{/productDetail/{id} (id=${product[0]})}"
+                                           th:text="${product[3]}"></a>
+                                    </h4>
+                                    <div class="price">
+                                        <ins><span class="price-amount" th:text="'₹'+ ${product[4]}"></span></ins>
+                                        <del><span class="price-amount" th:text="'₹'+ ${product[5]}"></span></del>
+                                    </div>
+                                    <div class="slide-down-box">
+                                        <p class="message">All products are carefully selected to ensure food
+                                            safety.</p>
+                                        <div class="buttons">
+                                            <a class="btn add-to-cart-btn"
+                                               th:href="@{/shoppingCart/{id}/1 (id=${product[0]})}"
+                                               th:if="${product[6]} > 0"><i aria-hidden="true"
+                                                                            class="fa fa-cart-arrow-down"></i>add to
+                                                cart</a>
+                                            <p style="color: red; font-size: 25px; text-align: center"
+                                               th:unless="${product[6]} > 0">Out of Stock</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-contain" id="tab01_3rd">
+                    <ul
+                            class="products-list biolife-carousel nav-center-02 nav-none-on-mobile eq-height-contain"
+                            data-slick='{"rows":1,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":6, "responsive":[
+            {"breakpoint":1200, "settings":{ "slidesToShow": 5, "slidesMargin": 15}},
+            {"breakpoint":1050, "settings":{ "slidesToShow": 4, "slidesMargin": 15}},
+            {"breakpoint":800, "settings":{ "slidesToShow": 3, "slidesMargin": 15}},
+            {"breakpoint":580, "settings":{ "slidesToShow": 2, "slidesMargin": 15}}
+            ]}'
+                    >
+                        <li class="product-item" th:each="product : ${bathing}">
+                            <div class="contain-product layout-default" style="border: 1px solid lightgray">
+                                <div class="product-thumb">
+                                    <a class="link-to-product" th:href="@{/productDetail/{id} (id=${product[0]})}">
+                                        <img alt="Vegetables"
+                                             class="product-thumnail"
+                                             style="width: 218px !important; height: 218px !important"
+                                             th:src="@{productImages/product1/{pid}/{name}(name=${product[1]},pid=${product[0]})}"/>
+                                    </a>
+                                    <a class="lookup btn_call_quickview"
+                                       th:href="@{/productDetail/{id} (id=${product[0]})}"><i
+                                            class="biolife-icon icon-search"></i></a>
+                                </div>
+                                <div class="info">
+                                    <b class="categories" th:text="${product[2]}"></b>
+                                    <h4 class="product-title">
+                                        <a class="pr-name" th:href="@{/productDetail/{id} (id=${product[0]})}"
+                                           th:text="${product[3]}"></a>
+                                    </h4>
+                                    <div class="price">
+                                        <ins><span class="price-amount" th:text="'₹'+ ${product[4]}"></span></ins>
+                                        <del><span class="price-amount" th:text="'₹'+ ${product[5]}"></span></del>
+                                    </div>
+                                    <div class="slide-down-box">
+                                        <p class="message">All products are carefully selected to ensure food
+                                            safety.</p>
+                                        <div class="buttons">
+                                            <a class="btn add-to-cart-btn"
+                                               th:href="@{/shoppingCart/{id}/1 (id=${product[0]})}"
+                                               th:if="${product[6]} > 0"><i aria-hidden="true"
+                                                                            class="fa fa-cart-arrow-down"></i>add to
+                                                cart</a>
+                                            <p style="color: red; font-size: 25px; text-align: center"
+                                               th:unless="${product[6]} > 0">Out of Stock</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-contain" id="tab01_4th">
+                    <ul
+                            class="products-list biolife-carousel nav-center-02 nav-none-on-mobile eq-height-contain"
+                            data-slick='{"rows":1,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":6, "responsive":[
+            {"breakpoint":1200, "settings":{ "slidesToShow": 5, "slidesMargin": 15}},
+            {"breakpoint":1050, "settings":{ "slidesToShow": 4, "slidesMargin": 15}},
+            {"breakpoint":800, "settings":{ "slidesToShow": 3, "slidesMargin": 15}},
+            {"breakpoint":580, "settings":{ "slidesToShow": 2, "slidesMargin": 15}}
+            ]}'
+                    >
+                        <li class="product-item" th:each="product : ${beauti}">
+                            <div class="contain-product layout-default" style="border: 1px solid lightgray">
+                                <div class="product-thumb">
+                                    <a class="link-to-product" th:href="@{/productDetail/{id} (id=${product[0]})}">
+                                        <img alt="Vegetables"
+                                             class="product-thumnail"
+                                             style="width: 218px !important; height: 218px !important"
+                                             th:src="@{productImages/product1/{pid}/{name}(name=${product[1]},pid=${product[0]})}"/>
+                                    </a>
+                                    <a class="lookup btn_call_quickview"
+                                       th:href="@{/productDetail/{id} (id=${product[0]})}"><i
+                                            class="biolife-icon icon-search"></i></a>
+                                </div>
+                                <div class="info">
+                                    <b class="categories" th:text="${product[2]}"></b>
+                                    <h4 class="product-title">
+                                        <a class="pr-name" th:href="@{/productDetail/{id} (id=${product[0]})}"
+                                           th:text="${product[3]}"></a>
+                                    </h4>
+                                    <div class="price">
+                                        <ins><span class="price-amount" th:text="'₹'+ ${product[4]}"></span></ins>
+                                        <del><span class="price-amount" th:text="'₹'+ ${product[5]}"></span></del>
+                                    </div>
+                                    <div class="slide-down-box">
+                                        <p class="message">All products are carefully selected to ensure food
+                                            safety.</p>
+                                        <div class="buttons">
+                                            <a class="btn add-to-cart-btn"
+                                               th:href="@{/shoppingCart/{id}/1 (id=${product[0]})}"
+                                               th:if="${product[6]} > 0"><i aria-hidden="true"
+                                                                            class="fa fa-cart-arrow-down"></i>add to
+                                                cart</a>
+                                            <p style="color: red; font-size: 25px; text-align: center"
+                                               th:unless="${product[6]} > 0">Out of Stock</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-contain" id="tab01_5th">
+                    <ul
+                            class="products-list biolife-carousel nav-center-02 nav-none-on-mobile eq-height-contain"
+                            data-slick='{"rows":1,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":6, "responsive":[
+            {"breakpoint":1200, "settings":{ "slidesToShow": 5, "slidesMargin": 15}},
+            {"breakpoint":1050, "settings":{ "slidesToShow": 4, "slidesMargin": 15}},
+            {"breakpoint":800, "settings":{ "slidesToShow": 3, "slidesMargin": 15}},
+            {"breakpoint":580, "settings":{ "slidesToShow": 2, "slidesMargin": 15}}
+            ]}'
+                    >
+                        <li class="product-item" th:each="product : ${cleaning}">
+                            <div class="contain-product layout-default" style="border: 1px solid lightgray">
+                                <div class="product-thumb">
+                                    <a class="link-to-product" th:href="@{/productDetail/{id} (id=${product[0]})}">
+                                        <img alt="Vegetables"
+                                             class="product-thumnail"
+                                             style="width: 218px !important; height: 218px !important"
+                                             th:src="@{productImages/product1/{pid}/{name}(name=${product[1]},pid=${product[0]})}"/>
+                                    </a>
+                                    <a class="lookup btn_call_quickview"
+                                       th:href="@{/productDetail/{id} (id=${product[0]})}"><i
+                                            class="biolife-icon icon-search"></i></a>
+                                </div>
+                                <div class="info">
+                                    <b class="categories" th:text="${product[2]}"></b>
+                                    <h4 class="product-title">
+                                        <a class="pr-name" th:href="@{/productDetail/{id} (id=${product[0]})}"
+                                           th:text="${product[3]}"></a>
+                                    </h4>
+                                    <div class="price">
+                                        <ins><span class="price-amount" th:text="'₹'+ ${product[4]}"></span></ins>
+                                        <del><span class="price-amount" th:text="'₹'+ ${product[5]}"></span></del>
+                                    </div>
+                                    <div class="slide-down-box">
+                                        <p class="message">All products are carefully selected to ensure food
+                                            safety.</p>
+                                        <div class="buttons">
+                                            <a class="btn add-to-cart-btn"
+                                               th:href="@{/shoppingCart/{id}/1 (id=${product[0]})}"
+                                               th:if="${product[6]} > 0"><i aria-hidden="true"
+                                                                            class="fa fa-cart-arrow-down"></i>add to
+                                                cart</a>
+                                            <p style="color: red; font-size: 25px; text-align: center"
+                                               th:unless="${product[6]} > 0">Out of Stock</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

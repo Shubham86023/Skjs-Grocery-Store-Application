@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Edit Product Step 1 | Skjs Grocery Store</title>
+    <link href="https://fonts.googleapis.com/css?family=Cairo:400,600,700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400i,700i" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&amp;display=swap" rel="stylesheet"/>
+    <link href="/assets/productImages/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/animate.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/nice-select.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/slick.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css"/>
+    <th:block th:insert="~{themes}"></th:block>
+</head>
+<style>
+    .nice-select {
+      width: 180px;
+      right: 70px !important;
+    }
+    .search_button {
+      width: 60px !important;
+    }
+    a {
+      text-decoration: auto !important;
+    }
+    .block1_links {
+      font-family: "Cairo";
+      color: #7faf51 !important;
+      font-size: 30px !important;
+    }
+
+    .tbl_head {
+      font-weight: 700;
+    }
+
+    #product_list_wrapper {
+      font-size: 20px !important;
+    }
+
+    .form_field {
+      font-size: 17px;
+      height: 45px;
+      border: 1px solid !important;
+      border-radius: 0.375rem !important;
+    }
+    .bottom_buttons {
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.42857143;
+      padding: 6px 12px;
+    }
+    .has-feedback .form-control {
+      padding-right: 7.5px;
+    }
+
+    .stepwizard {
+      display: table;
+      width: 100%;
+      position: relative;
+    }
+    .stepwizard-row {
+      display: table-row;
+    }
+    .stepwizard-step {
+      display: table-cell;
+      text-align: center;
+      position: relative;
+    }
+    .stepwizard-row:before {
+      top: 14px;
+      bottom: 0;
+      position: absolute;
+      content: " ";
+      width: 100%;
+      height: 1px;
+      background-color: #ccc;
+    }
+    .x_panel {
+      border: 1px solid #e6e9ed;
+      padding: 10px 17px;
+    }
+    .x_title {
+      padding: 1px 5px 6px;
+      margin-bottom: 10px;
+    }
+    .x_title h2 small {
+      margin-left: 10px;
+      font-size: 14px;
+    }
+    label {
+      font-weight: 600;
+    }
+</style>
+<body class="biolife-body">
+<!-- HEADER -->
+<!-- row1 -->
+<header class="header-area style-01 layout-03" id="header">
+    <div th:insert="~{header_section1}"></div>
+    <!-- row2 -->
+    <div th:insert="~{header}"></div>
+</header>
+<!-- Page Contain -->
+
+<div class="page-contain">
+    <div class="main-content" id="main-content">
+        <!--Block 01: Main slide-->
+        <div class="container" style="font-size: 17px; margin-top: 10px">
+            <a href="/catalogue"><i aria-hidden="true" class="fa fa-arrow-left"></i> Back to Listing</a>
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>
+                        <strong style="color: #7faf51">Product details</strong><small>Fields mark with <span
+                            style="color: red">*</span> are mandatory</small>
+                    </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="stepwizard">
+                        <div class="stepwizard-row setup-panel">
+                            <div class="stepwizard-step">
+                                <a class="btn btn-primary btn-circle" href="javascript:;">1</a>
+                                <p><strong>Product details</strong></p>
+                            </div>
+
+                            <div class="stepwizard-step">
+                                <a class="btn btn-default btn-circle" disabled="disabled" href="javascript:;">2</a>
+                                <p><strong>Sale Info</strong></p>
+                            </div>
+                            <div class="stepwizard-step">
+                                <a class="btn btn-default btn-circle" disabled="disabled" href="javascript:;">3</a>
+                                <p><strong>Images</strong></p>
+                            </div>
+
+                            <div class="stepwizard-step">
+                                <a class="btn btn-default btn-circle" disabled="disabled" href="javascript:;">4</a>
+                                <p><strong>Description</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="post" th:action="'/updateProductStep1/' + ${id}" th:object="${data1step}">
+                        <div class="row">
+                            <div class="col-xs-12 New-Enquiry" style="margin-top: 30px">
+                                <div class="col-md-12 New-Enquiry">
+                                    <div class="col-md-3 col-sm-4 col-xs-12 form-group has-feedback New-Enquiry">
+                                        <label>Main Category <span style="color: red">*</span> </label>
+                                        <select class="form-control has-feedback-left firm_id form_select form_field"
+                                                disabled id="cat1Id" name="cat1Id">
+                                            <option value="">Select main category</option>
+                                            <option th:each="cat : ${categories0}"
+                                                    th:selected="${data1step.cat1Id == cat.id}"
+                                                    th:text="${cat.cat1Name}"
+                                                    th:value="${cat.id}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 col-sm-4 col-xs-12 form-group has-feedback New-Enquiry">
+                                        <label>Sub-Category <span style="color: red">*</span></label>
+                                        <select class="form-control has-feedback-left form_select form_field"
+                                                disabled id="cat2Id" name="cat2Id">
+                                            <option value="">Select Sub-category</option>
+                                            <option th:each="cat : ${cat2ByCat1}"
+                                                    th:selected="${data1step.cat2Id == cat.id}"
+                                                    th:text="${cat.cat2Name}"
+                                                    th:value="${cat.id}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 col-sm-4 col-xs-12 form-group has-feedback New-Enquiry">
+                                        <label>Product Category <span style="color: red">*</span></label>
+                                        <select class="form-control has-feedback-left form_select form_field"
+                                                disabled id="cat3Id" name="cat3Id">
+                                            <option value="">Select Product Category</option>
+                                            <option th:each="cat : ${cat3ByCat21}"
+                                                    th:selected="${data1step.cat3Id == cat.id}"
+                                                    th:text="${cat.cat3Name}"
+                                                    th:value="${cat.id}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-md-6 col-sm-4 col-xs-12 form-group has-feedback New-Enquiry">
+                                        <label>Title (Item Name) <span style="color: red">*</span></label>
+                                        <input class="form-control has-feedback-left form_field" id="productName"
+                                               name="productName" placeholder="Enter Item Name"
+                                               required th:value="${data1step.productName}"
+                                               type="text"/>
+                                    </div>
+                                    <div class="col-md-3 col-sm-4 col-xs-12 form-group has-feedback New-Enquiry">
+                                        <label>Brand Name</label>
+                                        <input class="form-control has-feedback-left form_field" id="brandName"
+                                               name="brandName" placeholder="Enter Brand Name if Available.."
+                                               th:value="${data1step.brandName}"
+                                               type="text"/>
+                                    </div>
+
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback"
+                                         style="margin-top: 30px">
+                                        <div class="New-Enquiry2" style="display: flex; gap: 10px; float: right">
+                                            <button class="btn btn-primary bottom_buttons" id="reset" type="reset"><i
+                                                    aria-hidden="true" class="fa fa-repeat"></i> Reset
+                                            </button>
+                                            <button class="btn btn-success pull-left bottom_buttons" id="submit_but"
+                                                    type="submit"><i aria-hidden="true" class="fa fa-floppy-o"></i>&nbsp;
+                                                Save & Next <i aria-hidden="true" class="fa fa-arrow-right"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FOOTER -->
+<div style="margin-top: 50px" th:insert="~{footer}"></div>
+
+<!--Footer For Mobile-->
+<div th:insert="~{footer_section1}"></div>
+
+<!-- Scroll Top Button -->
+<a class="btn-scroll-top"><i class="biolife-icon icon-left-arrow"></i></a>
+
+<script src="/assets/js/jquery-3.4.1.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery.countdown.min.js"></script>
+<script src="/assets/js/jquery.nice-select.min.js"></script>
+<script src="/assets/js/jquery.nicescroll.min.js"></script>
+<script src="/assets/js/slick.min.js"></script>
+<script src="/assets/js/biolife.framework.js"></script>
+<script src="/assets/js/functions.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+        src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c="
+        src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+
+<script type="text/javascript">
+    var table;
+    $(document).ready(function () {
+      $(".form_select").css("display", "block");
+      $("div .nice-select").css("display", "none");
+      $(".form_select").removeClass("nice-select");
+      $("div .nice-select").css("display", "block");
+
+      $("#cat1Id").change(function () {
+        var cat1Id = $(this).val();
+        $.ajax({
+          url: "getCat2ListHtml",
+          method: "POST",
+          data: {
+            cat1: cat1Id,
+          },
+          success: function (data) {
+            $("#cat2Id").html(data);
+          },
+        });
+      });
+
+      $("#cat2Id").change(function () {
+        var cat1Id = $("#cat1Id").val();
+        var cat2Id = $(this).val();
+        $.ajax({
+          url: "getCat3ListHtml",
+          method: "POST",
+          data: {
+            cat1: cat1Id,
+            cat2: cat2Id,
+          },
+          success: function (data) {
+            $("#cat3Id").html(data);
+          },
+        });
+      });
+    });
+</script>
+</body>
+</html>

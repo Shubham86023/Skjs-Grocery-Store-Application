@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title th:text="${productData.productName}"></title>
+    <link
+            href="https://fonts.googleapis.com/css?family=Cairo:400,600,700&amp;display=swap"
+            rel="stylesheet"
+    />
+    <link
+            href="https://fonts.googleapis.com/css?family=Poppins:600&amp;display=swap"
+            rel="stylesheet"
+    />
+    <link
+            href="https://fonts.googleapis.com/css?family=Playfair+Display:400i,700i"
+            rel="stylesheet"
+    />
+    <link
+            href="https://fonts.googleapis.com/css?family=Ubuntu&amp;display=swap"
+            rel="stylesheet"
+    />
+    <link
+            href="/assets/productImages/favicon.png"
+            rel="shortcut icon"
+            type="image/x-icon"
+    />
+    <link
+            href="/assets/css/bootstrap.min.css"
+            rel="stylesheet"
+            type="text/css"
+    />
+    <link href="/assets/css/animate.min.css" rel="stylesheet" type="text/css"/>
+    <link
+            href="/assets/css/font-awesome.min.css"
+            rel="stylesheet"
+            type="text/css"
+    />
+    <link href="/assets/css/nice-select.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/slick.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css"/>
+    <th:block th:insert="~{themes}"></th:block>
+
+    <link
+            crossorigin="anonymous"
+            href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+            integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+            rel="stylesheet"
+    />
+</head>
+<style>
+    .nice-select {
+      width: 180px;
+      right: 70px !important;
+    }
+    .search_button {
+      width: 60px !important;
+    }
+    .buy_now:hover {
+      background-color: #444444 !important;
+    }
+    div.star_rating {
+      float: left;
+    }
+
+    input.star {
+      border: 0;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      position: absolute !important;
+      clip: rect(1px 1px 1px 1px);
+      clip: rect(1px, 1px, 1px, 1px);
+      opacity: 0;
+      float: right;
+    }
+
+    label.star {
+      position: relative;
+      float: right;
+      color: #c8c8c8;
+      font-size: 25px;
+    }
+
+    label.star:before {
+      margin: 5px;
+      content: "\f005";
+      font-family: FontAwesome;
+      font-size: 1.5em;
+      color: var(--accent-color);
+      -webkit-user-select: none; /* Safari 3.1+ */
+      -moz-user-select: none; /* Firefox 2+ */
+      -ms-user-select: none; /* IE 10+ */
+      user-select: none;
+    }
+
+    input.star:checked ~ label.star:before {
+      color: #ffc107;
+    }
+
+    label.star:hover ~ label.star:before {
+      color: #ffdb70;
+    }
+
+    label.star:hover:before {
+      color: #ffc107;
+    }
+    .qty_select {
+      border: 1px solid gray;
+      border-radius: 8px;
+      line-height: 5px;
+      position: static;
+      width: auto;
+      min-width: 70px;
+      background: #f0f2f2;
+      padding: 0 20px 0 15px;
+      font-weight: 500;
+      font-size: 15px;
+    }
+    .qty_select .current {
+      color: black;
+    }
+</style>
+<body class="biolife-body">
+<!-- HEADER -->
+<!-- row1 -->
+<header class="header-area style-01 layout-03" id="header">
+    <div th:insert="~{header_section1}"></div>
+
+    <!-- row2 -->
+    <div th:insert="~{header}"></div>
+</header>
+<!-- Page Contain -->
+<div class="page-contain" style="margin-top: 30px">
+    <div class="main-content" id="main-content">
+        <!-- Main content    -->
+        <div class="page-contain single-product">
+            <div class="container">
+                <!-- Main content -->
+                <div class="main-content" id="main-content">
+                    <!-- summary info -->
+                    <div class="sumary-product single-layout">
+                        <div class="media">
+                            <ul
+                                    class="biolife-carousel slider-for"
+                                    data-slick='{"arrows":false,"dots":false,"slidesMargin":30,"slidesToShow":1,"slidesToScroll":1,"fade":true,"asNavFor":".slider-nav"}'
+                            >
+                                <li th:each="image,iterationStatus : ${imageNames}">
+                                    <img
+                                            alt=""
+                                            style="
+                          width: 450px !important;
+                          height: 450px !important;
+                        "
+                                            th:src="@{/productImages/product1/{pid}/{name}(name=${image},pid=${productData.id})}"
+                                    />
+                                </li>
+                            </ul>
+                            <ul
+                                    class="biolife-carousel slider-nav"
+                                    data-slick='{"arrows":false,"dots":false,"centerMode":false,"focusOnSelect":true,"slidesMargin":10,"slidesToShow":4,"slidesToScroll":1,"asNavFor":".slider-for"}'
+                            >
+                                <li th:each="image,iterationStatus : ${imageNames}">
+                                    <img
+                                            alt=""
+                                            style="width: 88px !important; height: 88px !important"
+                                            th:src="@{/productImages/product1/{pid}/{name}(name=${image},pid=${productData.id})}"
+                                    />
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="product-attribute">
+                            <h3
+                                    class="title"
+                                    style="font-size: 24px; max-width: 400px"
+                                    th:text="${productData.productName}"
+                            ></h3>
+                            <div
+                                    class="rating"
+                                    style="border-bottom: 1px solid lightgray; max-width: 400px"
+                            >
+                                <p class="star-rating">
+                      <span
+                              th:attr="style='width:'+ ${rateOutOf5 * 20} + '%'"
+                      ></span>
+                                </p>
+                                <span
+                                        class="review-count"
+                                        th:text="'(' + ${count} + ' Reviews)'"
+                                ></span>
+                                <b
+                                        class="category"
+                                        th:text="'By: ' + ${productData.brandName}"
+                                ></b>
+                            </div>
+                            <div class="price">
+                                <ins
+                                ><span
+                                        class="price-amount"
+                                        style="font-size: 28px"
+                                        th:text="'₹'+ ${productData.yourPrice}"
+                                ></span>
+                                </ins>
+                                <del
+                                ><span
+                                        class="price-amount"
+                                        style="font-size: 13px"
+                                        th:text="'₹'+ ${productData.mrp}"
+                                ></span
+                                ></del>
+                            </div>
+                            <span
+                                    class="sku"
+                                    style="color: red"
+                                    th:if="(${productData.mrp} != ${productData.yourPrice})"
+                                    th:text="'You Save: ₹' + ${savings1} + ' ('+ ${savings2} + '%)'"
+                            ></span>
+                            <p>Inclusive of all taxes</p>
+                            <p
+                                    class="excerpt"
+                                    style="max-width: 400px"
+                                    th:text="${productData.description}"
+                            ></p>
+
+                            <p
+                                    class=""
+                                    th:attr="style=${productData.saleQty} < 1 ? 'color:red;font-size: 18px':'color: #007600;font-size: 18px'"
+                                    th:text="${productData.saleQty} < 1 ? 'Out of Stock':'In Stock.'"
+                            ></p>
+                            <p
+                                    style="color: #958a0a; font-weight: 700; font-size: 17px"
+                                    th:if="${productData.saleQty} < 6"
+                            >
+                                Only Few Units Left.
+                            </p>
+                            <div
+                                    class=""
+                                    style="font-size: 14px; display: flex; gap: 5px"
+                            >
+                                <p>Sold By</p>
+                                <p style="color: #007185" th:text="${sellerName}"></p>
+                                <p>Fulfill by Skjs Grocery Store.</p>
+                            </div>
+
+                            <div class="shipping-info">
+                                <p class="for-today">Non-Returnable Product</p>
+                            </div>
+                        </div>
+                        <div class="action-form" style="background-color: lightgray">
+                            <form action="/checkingOut" method="post">
+                                <div
+                                        class="quantity-box"
+                                        th:if="${productData.saleQty} > 0"
+                                >
+                                    <span class="title">Quantity:</span>
+                                    <div class="qty-input" style="width: 55px">
+                                        <select
+                                                class="qty_select"
+                                                name="qty_select"
+                                                th:if="${productData.saleQty} >= 7"
+                                        >
+                                            <option selected value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select>
+                                        <select
+                                                class="qty_select"
+                                                name="qty_select"
+                                                th:if="${productData.saleQty} < 7"
+                                        >
+                                            <option
+                                                    th:each="i : ${#numbers.sequence(1, productData.saleQty)}"
+                                                    th:selected="${i == 1}"
+                                                    th:text="${i}"
+                                                    th:value="${i}"
+                                            ></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="buttons">
+                                    <input
+                                            name="price"
+                                            th:value="${productData.yourPrice}"
+                                            type="hidden"
+                                    />
+                                    <a
+                                            class="btn add-to-cart-btn href_atc"
+                                            th:href="@{/shoppingCart/{id}/1 (id=${productData.id})}"
+                                            th:if="${productData.saleQty} > 0"
+                                    >Add to Cart</a
+                                    >
+                                    <button
+                                            class="btn add-to-cart-btn buy_now"
+                                            style="
+                          margin-top: 10px;
+                          background-color: #05a4ff;
+                          width: -webkit-fill-available;
+                        "
+                                            th:if="${productData.saleQty} > 0"
+                                            type="submit"
+                                    >
+                                        Buy Now
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Tab info -->
+                    <div
+                            class="product-tabs single-layout biolife-tab-contain"
+                            style="margin-top: 150px"
+                    >
+                        <div class="tab-head">
+                            <ul class="tabs">
+                                <li class="tab-element active">
+                                    <a class="tab-link" href="#tab_1st"
+                                    >Customer Reviews
+                                        <sup th:text="'('+ ${count} +')'"></sup
+                                        ></a>
+                                </li>
+                                <li class="tab-element">
+                                    <a class="tab-link" href="#tab_2nd"
+                                    >Products Descriptions</a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div
+                                    class="tab-contain review-tab active"
+                                    id="tab_1st"
+                                    style="
+                      padding-top: 28px;
+                      padding-bottom: 0px;
+                      border-bottom: 0px;
+                    "
+                            >
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                                            <div class="rating-info">
+                                                <p class="index">
+                                                    <strong
+                                                            class="rating"
+                                                            th:text="${rateOutOf5}"
+                                                    ></strong
+                                                    >out of 5
+                                                </p>
+                                                <div class="rating">
+                                                    <p class="star-rating">
+                                <span
+                                        th:attr="style='width:'+ ${rateOutOf5 * 20} + '%'"
+                                ></span>
+                                                    </p>
+                                                </div>
+
+                                                <ul class="options">
+                                                    <li th:each="rate : ${ratings}">
+                                                        <div class="detail-for">
+                                  <span
+                                          class="option-name"
+                                          th:text="${rate[2]} +' star'"
+                                  ></span>
+                                                            <span class="progres">
+                                    <span class="line-100percent"
+                                    ><span
+                                            class="percent"
+                                            th:attr="style='width:'+ (${rate[7]} / ${count}) * 100 + '%'"
+                                    ></span
+                                    ></span>
+                                  </span>
+                                                            <span
+                                                                    class="number"
+                                                                    th:text="${rate[7]}"
+                                                            ></span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                                            <div
+                                                    class="review-form-wrapper"
+                                                    style="padding-top: 0px"
+                                            >
+                                                <div
+                                                        class="alert alert-success alert-dismissible success"
+                                                        style="display: none"
+                                                >
+                                                    <p class="rMessage"></p>
+                                                </div>
+                                                <div
+                                                        class="alert alert-danger alert-dismissible danger"
+                                                        style="display: none"
+                                                >
+                                                    <p class="rMessage"></p>
+                                                </div>
+                                                <span class="title">Provide your review</span>
+                                                <div
+                                                        class="comment-form-rating"
+                                                        style="
+                                display: flex;
+                                gap: 20px;
+                                margin: 7px 0 20px;
+                              "
+                                                >
+                                                    <label>1. Your rating of this products:</label>
+                                                    <div class="star_rating">
+                                                        <input
+                                                                id="productId"
+                                                                th:value="${productData.id}"
+                                                                type="hidden"
+                                                        />
+                                                        <input
+                                                                id="checkbox_result"
+                                                                name="ratingValue"
+                                                                type="hidden"
+                                                                value="0"
+                                                        />
+                                                        <!-- this has 4 stars, you can change to add or subtract stars. -->
+                                                        <input
+                                                                class="star star_result"
+                                                                id="star5"
+                                                                name="Star_Rating_of_5_stars"
+                                                                type="checkbox"
+                                                                value="5"
+                                                        />
+                                                        <label
+                                                                class="star star_label"
+                                                                for="star5"
+                                                                title="5 stars"
+                                                        ></label>
+                                                        <input
+                                                                class="star star_result"
+                                                                id="star4"
+                                                                name="Star_Rating_of_5_stars"
+                                                                type="checkbox"
+                                                                value="4"
+                                                        />
+                                                        <label
+                                                                class="star star_label"
+                                                                for="star4"
+                                                                title="4 stars"
+                                                        ></label>
+                                                        <input
+                                                                class="star star_result"
+                                                                id="star3"
+                                                                name="Star_Rating_of_4_stars"
+                                                                type="checkbox"
+                                                                value="3"
+                                                        />
+                                                        <label
+                                                                class="star star_label"
+                                                                for="star3"
+                                                                title="3 stars"
+                                                        ></label>
+                                                        <input
+                                                                class="star star_result"
+                                                                id="star2"
+                                                                name="Star_Rating_of_4_stars"
+                                                                type="checkbox"
+                                                                value="2"
+                                                        />
+                                                        <label
+                                                                class="star star_label"
+                                                                for="star2"
+                                                                title="2 stars"
+                                                        ></label>
+                                                        <input
+                                                                class="star star_result"
+                                                                id="star1"
+                                                                name="Star_Rating_of_4_stars"
+                                                                type="checkbox"
+                                                                value="1"
+                                                        />
+                                                        <label
+                                                                class="star star_label"
+                                                                for="star1"
+                                                                title="1 stars"
+                                                        ></label>
+                                                    </div>
+                                                </div>
+
+                                                <p class="form-row">
+                              <textarea
+                                      cols="30"
+                                      id="reviewerMessage"
+                                      name="reviewerMessage"
+                                      placeholder="Write your review here..."
+                                      rows="10"
+                              ></textarea>
+                                                </p>
+                                                <p class="form-row">
+                                                    <button
+                                                            id="submitReview"
+                                                            name="submit"
+                                                            type="submit"
+                                                    >
+                                                        submit review
+                                                    </button>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="comments" style="margin-top: 0px">
+                                        <ol class="commentlist">
+                                            <li
+                                                    class="review"
+                                                    style="padding-top: 10px; padding-bottom: 0px"
+                                                    th:each="review : ${reviews}"
+                                            >
+                                                <div class="comment-container">
+                                                    <div class="row">
+                                                        <div
+                                                                class="comment-content col-lg-8 col-md-9 col-sm-8 col-xs-12"
+                                                        >
+                                                            <p class="comment-in">
+                                    <span
+                                            class="post-date"
+                                            th:text="${review[5]}"
+                                    ></span>
+                                                            </p>
+                                                            <div class="rating">
+                                                                <p class="star-rating">
+                                      <span
+                                              th:attr="style='width:'+${review[2] * 20}+'%'"
+                                      ></span>
+                                                                </p>
+                                                            </div>
+                                                            <p class="author">
+                                                                by:
+                                                                <b
+                                                                        th:if="${review[6] == 'user'}"
+                                                                        th:text="${review[8]}"
+                                                                ></b>
+                                                                <b
+                                                                        th:if="${review[6] == 'buser'}"
+                                                                        th:text="${review[7]}"
+                                                                ></b>
+                                                            </p>
+                                                            <p
+                                                                    class="comment-text"
+                                                                    th:text="${review[3]}"
+                                                            ></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                    class="tab-contain desc-tab"
+                                    id="tab_2nd"
+                                    style="padding-bottom: 0px"
+                            >
+                                <p class="desc" th:text="${productData.description}"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- related products -->
+                    <div class="product-related-box single-layout">
+                        <div class="biolife-title-box lg-margin-bottom-26px-im">
+                            <span class="biolife-icon icon-organic"></span>
+                            <span class="subtitle">All the best item for You</span>
+                            <h3 class="main-title">Related Products</h3>
+                        </div>
+                        <ul
+                                class="products-list biolife-carousel nav-center-02 nav-none-on-mobile"
+                                data-slick='{"rows":1,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":6, "responsive":[
+                  {"breakpoint":1200, "settings":{ "slidesToShow": 5, "slidesMargin": 15}},
+                  {"breakpoint":1050, "settings":{ "slidesToShow": 4, "slidesMargin": 15}},
+                  {"breakpoint":800, "settings":{ "slidesToShow": 3, "slidesMargin": 15}},
+                  {"breakpoint":580, "settings":{ "slidesToShow": 2, "slidesMargin": 15}}
+                  ]}'
+                        >
+                            <li
+                                    class="product-item"
+                                    th:each="product : ${relatedProducts}"
+                            >
+                                <div class="contain-product layout-default">
+                                    <div class="product-thumb">
+                                        <a
+                                                class="link-to-product"
+                                                th:href="@{/productDetail/{id} (id=${product[0]})}"
+                                        >
+                                            <img
+                                                    alt="Vegetables"
+                                                    class="product-thumnail"
+                                                    style="
+                              width: 218px !important;
+                              height: 218px !important;
+                            "
+                                                    th:src="@{/productImages/product1/{pid}/{name}(name=${product[1]},pid=${product[0]})}"
+                                            />
+                                        </a>
+                                        <a
+                                                class="lookup btn_call_quickview"
+                                                th:href="@{/productDetail/{id} (id=${product[0]})}"
+                                        ><i class="biolife-icon icon-search"></i
+                                        ></a>
+                                    </div>
+                                    <div class="info">
+                                        <b class="categories" th:text="${product[2]}"></b>
+                                        <h4 class="product-title">
+                                            <a
+                                                    class="pr-name"
+                                                    th:href="@{/productDetail/{id} (id=${product[0]})}"
+                                                    th:text="${product[3]}"
+                                            ></a>
+                                        </h4>
+                                        <div class="price">
+                                            <ins
+                                            ><span
+                                                    class="price-amount"
+                                                    th:text="'₹'+ ${product[4]}"
+                                            ></span>
+                                            </ins>
+                                            <del
+                                            ><span
+                                                    class="price-amount"
+                                                    th:text="'₹'+ ${product[5]}"
+                                            ></span
+                                            ></del>
+                                        </div>
+                                        <div class="slide-down-box">
+                                            <p class="message">
+                                                All products are carefully selected to ensure food
+                                                safety.
+                                            </p>
+                                            <div class="buttons">
+                                                <a
+                                                        class="btn add-to-cart-btn"
+                                                        th:href="@{/shoppingCart/{id}/1 (id=${product[0]})}"
+                                                        th:if="${product[6]} > 0"
+                                                ><i
+                                                        aria-hidden="true"
+                                                        class="fa fa-cart-arrow-down"
+                                                ></i
+                                                >add to cart</a
+                                                >
+                                                <p
+                                                        style="
+                                color: red;
+                                font-size: 30px;
+                                text-align: center;
+                              "
+                                                        th:unless="${product[6]} > 0"
+                                                >
+                                                    Out of Stock
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FOOTER -->
+<div th:insert="~{footer}"></div>
+<!--Footer For Mobile-->
+<div th:insert="~{footer_section1}"></div>
+<!-- Scroll Top Button -->
+<a class="btn-scroll-top"><i class="biolife-icon icon-left-arrow"></i></a>
+
+<script src="/assets/js/jquery-3.4.1.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery.countdown.min.js"></script>
+<script src="/assets/js/jquery.nice-select.min.js"></script>
+<script src="/assets/js/jquery.nicescroll.min.js"></script>
+<script src="/assets/js/slick.min.js"></script>
+<script src="/assets/js/biolife.framework.js"></script>
+<script src="/assets/js/functions.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+      $(".qty_select").change(function () {
+        var qty = $(".qty_select").val();
+        var productId = $("#productId").val();
+
+        $(".href_atc").attr("href", "/shoppingCart/" + productId + "/" + qty);
+      });
+
+      $("#submitReview").click(function () {
+
+        var reviewData = {
+          checkbox_result: $("#checkbox_result").val(),
+          reviewerMessage: $("#reviewerMessage").val(),
+          productId: $("#productId").val(),
+        };
+
+        if (reviewData.checkbox_result != 0) {
+          $.ajax({
+            url: "/savingProductReview",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(reviewData), // Send the data as JSON
+            success: function (data) {
+              if (data == 1) {
+                $(".success").css("display", "block");
+                $(".rMessage").html(
+                  "Thanks for Providing your valuable review."
+                );
+                $(".success").delay(4000).fadeOut("slow");
+              } else {
+                $(".danger").css("display", "block");
+                $(".rMessage").html(
+                  "Looks like you havn't login,Please login."
+                );
+                $(".danger").delay(3000).fadeOut("slow");
+              }
+            },
+          });
+        } else {
+          alert("Please Rate the product");
+        }
+      });
+
+      $(".star_result").change(function () {
+        var checkedValues = [];
+
+        if ($("#star1").is(":checked")) {
+          checkedValues.push($("#star1").val());
+        }
+        if ($("#star2").is(":checked")) {
+          checkedValues.push($("#star2").val());
+        }
+        if ($("#star3").is(":checked")) {
+          checkedValues.push($("#star3").val());
+        }
+        if ($("#star4").is(":checked")) {
+          checkedValues.push($("#star4").val());
+        }
+        if ($("#star5").is(":checked")) {
+          checkedValues.push($("#star5").val());
+        }
+
+        if (checkedValues.length != 0) {
+          $("#checkbox_result").val(Math.max(...checkedValues));
+        } else {
+          $("#checkbox_result").val(0);
+        }
+      });
+    });
+</script>
+</body>
+</html>

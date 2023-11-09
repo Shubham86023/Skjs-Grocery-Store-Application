@@ -1,0 +1,112 @@
+<div class="container z-index-20 xs-margin-top-80px sm-margin-top-0">
+    <hr/>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="col-lg-12 col-md-4 col-sm-4 col-xs-12">
+                    <div class="biolife-banner style-05 biolife-banner__style-05">
+                        <div class="banner-contain">
+                            <div class="media">
+                                <p class="bn-link" href="#"><img alt=""
+                                                                 height="180"
+                                                                 src="assets/productImages/home-04/bn_style05.png"
+                                                                 width="197"/></p>
+                            </div>
+                            <div class="text-content">
+                                <b class="text1">Mid June Royal Lee cherries</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-4 col-sm-4 col-xs-12 xs-margin-top-30px sm-margin-top-0 lg-margin-top-30px">
+                    <div class="biolife-banner style-06 biolife-banner__style-06">
+                        <div class="banner-contain">
+                            <div class="media">
+                                <p class="bn-link" href="#"><img alt=""
+                                                                 height="230"
+                                                                 src="assets/productImages/home-04/bn_style06.png"
+                                                                 width="214"/></p>
+                            </div>
+                            <div class="text-content">
+                                <b class="text1">California</b>
+                                <b class="text2">Peaches</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-4 col-sm-4 col-xs-12 xs-margin-top-30px sm-margin-top-0 lg-margin-top-30px">
+                    <div class="biolife-banner style-07 biolife-banner__style-07">
+                        <div class="banner-contain">
+                            <div class="media">
+                                <p class="bn-link" href="#"><img alt=""
+                                                                 height="230"
+                                                                 src="assets/productImages/home-04/bn_style07.png"
+                                                                 width="204"/></p>
+                            </div>
+                            <div class="text-content">
+                                <b class="text1">Grapes</b>
+                                <span class="text2">Make the plate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8" style="margin-top: 4px">
+            <div class="advance-product-box">
+                <div class="biolife-title-box bold-style biolife-title-box__bold-style mobile-tiny lg-margin-bottom-26px-im">
+                    <h3 class="title">Bestseller Products</h3>
+                </div>
+                <ul
+                        class="products-list biolife-carousel nav-top-right nav-main-color nav-none-on-mobile eq-height-contain"
+                        data-slick='{"rows":2 ,"arrows":true,"dots":false,"infinite":true,"speed":300,"slidesMargin":15,"slidesToShow":4, "responsive":[
+          {"breakpoint":1200, "settings":{ "slidesToShow": 4, "slidesMargin": 15}},
+          {"breakpoint":1050, "settings":{ "slidesToShow": 4, "slidesMargin": 15}},
+          {"breakpoint":800, "settings":{ "slidesToShow": 3, "slidesMargin": 15}},
+          {"breakpoint":580, "settings":{ "slidesToShow": 2, "slidesMargin": 15}}
+          ]}'
+                >
+                    <li class="product-item bestseller" th:each="product : ${bestSellersProducts}">
+                        <div class="contain-product layout-default" style="border: 1px solid lightgray">
+                            <div class="product-thumb">
+                                <a class="link-to-product" th:href="@{/productDetail/{id} (id=${product[0]})}">
+                                    <img alt="Vegetables"
+                                         class="product-thumnail" height="200"
+                                         style="width: 200px !important; height: 200px !important"
+                                         th:src="@{productImages/product1/{pid}/{name}(name=${product[1]},pid=${product[0]})}"
+                                         width="200"/>
+                                </a>
+                                <a class="lookup btn_call_quickview"
+                                   th:href="@{/productDetail/{id} (id=${product[0]})}"><i
+                                        class="biolife-icon icon-search"></i></a>
+                            </div>
+                            <div class="info">
+                                <b class="categories" th:text="${product[2]}"></b>
+                                <h4 class="product-title"><a class="pr-name"
+                                                             th:href="@{/productDetail/{id} (id=${product[0]})}"
+                                                             th:text="${product[3]}"></a></h4>
+                                <div class="price">
+                                    <ins><span class="price-amount" th:text="'₹'+ ${product[4]}"></span></ins>
+                                    <del><span class="price-amount" th:text="'₹'+ ${product[5]}"></span></del>
+                                </div>
+                                <div class="slide-down-box">
+                                    <p class="message">All products are carefully selected to ensure food safety.</p>
+                                    <div class="buttons">
+                                        <a class="btn add-to-cart-btn"
+                                           th:href="@{/shoppingCart/{id}/1 (id=${product[0]})}"
+                                           th:if="${product[6]} > 0"><i aria-hidden="true"
+                                                                        class="fa fa-cart-arrow-down"></i>add to
+                                            cart</a>
+                                        <p style="color: red; font-size: 25px; text-align: center"
+                                           th:unless="${product[6]} > 0">Out of Stock</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="mobile-footer">
+    <div class="mobile-footer-inner">
+        <div class="mobile-block block-menu-main">
+            <a class="menu-bar menu-toggle btn-toggle" data-object="open-mobile-menu" href="javascript:void(0)">
+                <span class="fa fa-bars"></span>
+                <span class="text">Menu</span>
+            </a>
+        </div>
+
+        <div class="mobile-block block-minicart">
+            <a class="link-to-cart" href="/yourCart">
+                <span aria-hidden="true" class="fa fa-shopping-bag"></span>
+                <span class="text">Cart</span>
+            </a>
+        </div>
+        <div class="mobile-block block-global">
+            <a class="menu-bar myaccount-toggle btn-toggle" data-object="global-panel-opened" href="javascript:void(0)">
+                <span class="fa fa-globe"></span>
+                <span class="text" th:if="${!is_login && !bis_login}">Global</span>
+                <span class="text" th:if="${is_login}" th:text="${user_name}"></span>
+                <span class="text" th:if="${bis_login}" th:text="${buser_name}"></span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!--Mobile Global Menu-->
+<div class="mobile-block-global">
+    <div class="biolife-mobile-panels">
+        <span class="biolife-current-panel-title">My Account</span>
+        <a class="biolife-close-btn" data-object="global-panel-opened" href="#">&times;</a>
+    </div>
+    <div class="block-global-contain">
+        <div class="glb-item my-account" th:if="${!is_login && !bis_login}">
+            <b class="title"></b>
+            <ul class="list">
+                <li class="list-item"><a href="/signupBusiness">Become a Seller</a></li>
+                <li class="list-item"><a href="/login">Login/register</a></li>
+            </ul>
+        </div>
+        <div class="glb-item my-account" th:if="${is_login}">
+            <b class="title" th:text="${user_name}"></b>
+            <ul class="list">
+                <li class="list-item"><a href="/editProfile">Edit Profile</a></li>
+                <li class="list-item"><a href="/placedOrders">Order history</a></li>
+                <li class="list-item"><a href="/logout">Log Out</a></li>
+            </ul>
+        </div>
+        <div class="glb-item my-account" th:if="${bis_login}">
+            <b class="title" th:text="${buser_name}"></b>
+            <ul class="list">
+                <li class="list-item"><a href="bEditProfile">Edit Profile</a></li>
+                <li class="list-item"><a href="updatePersonalInfo">Business Details</a></li>
+                <li class="list-item"><a href="/placedOrders">Order History</a></li>
+                <li class="list-item"><a href="blogout">Log Out</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
