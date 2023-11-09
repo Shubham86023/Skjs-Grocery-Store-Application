@@ -4,7 +4,7 @@ Developed a application on e-commerce theme, for grocery stores where customers 
 
 ## Technology used -
 ```
- Backend -- Java, SpringBoot, Data JPA.
+ Backend -- Java, SpringBoot, Data JPA, REST APIs.
  Frontend -- HTML, CSS, JS, Thymeleaf, jQuery.
  DB -- MySQL.
 ```
