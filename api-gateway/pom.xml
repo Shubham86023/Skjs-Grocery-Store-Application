@@ -13,6 +13,7 @@
     <name>api-gateway</name>
     <url>http://maven.apache.org</url>
 
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -36,4 +37,9 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <finalName>api-gateway</finalName>
+    </build>
+
 </project>

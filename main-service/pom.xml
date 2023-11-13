@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>main-service</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>main-service Maven Webapp</name>
     <url>http://maven.apache.org</url>
 
@@ -86,4 +86,27 @@
     <build>
         <finalName>main-service</finalName>
     </build>
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>com.spotify</groupId>-->
+<!--                <artifactId>dockerfile-maven-plugin</artifactId>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>default</id>-->
+<!--                        <goals>-->
+<!--                            <goal>build</goal>-->
+<!--                            <goal>push</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--                <configuration>-->
+<!--                    <repository>skjs-grocery-store-${project.artifactId}</repository>-->
+<!--                    <tag>${project.version}</tag>-->
+<!--                    <buildArgs>-->
+<!--                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>-->
+<!--                    </buildArgs>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
 </project>

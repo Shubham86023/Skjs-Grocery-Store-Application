@@ -1,0 +1,76 @@
+version: '3.1.5'
+services:
+  eureka-server:
+    image: skjs-grocery-store-discovery-server
+    build: discovery-server/
+    ports:
+      - 8761:8761
+    networks:
+      - skjs-network
+
+  api-gateway:
+    image: skjs-grocery-store-api-gateway
+    build: api-gateway/
+    depends_on:
+      - eureka-server
+      - product-service
+      - main-service
+    environment:
+      SPRING_APPLICATION_JSON: '{
+      "eureka":{"client":{"serviceUrl":{"defaultZone":"http://eureka-server:8761/eureka"}}}}'
+    ports:
+      - 9292:9292
+    networks:
+      - skjs-network
+
+  main-service:
+    image: skjs-grocery-store-main-service
+    build: main-service/
+    depends_on:
+      - eureka-server
+      - product-service
+      - mysqldb
+    environment:
+      SPRING_APPLICATION_JSON: '{
+      "eureka":{"client":{"serviceUrl":{"defaultZone":"http://eureka-server:8761/eureka"}}}}'
+      SPRING_DATASOURCE_URL: "jdbc:mysql://mysqldb:3306/skjs_grocery_store"
+      SPRING_DATASOURCE_USERNAME: "shu86023"
+      SPRING_DATASOURCE_PASSWORD: "Shubham@86023"
+    ports:
+      - "8000-8010:8001"
+    networks:
+      - skjs-network
+
+  product-service:
+    image: skjs-grocery-store-product-service
+    build: product-service/
+    depends_on:
+      - eureka-server
+      - mysqldb
+    environment:
+      SPRING_APPLICATION_JSON: '{
+      "eureka":{"client":{"serviceUrl":{"defaultZone":"http://eureka-server:8761/eureka"}}}}'
+      SPRING_DATASOURCE_URL: "jdbc:mysql://mysqldb:3306/skjs_grocery_store"
+      SPRING_DATASOURCE_USERNAME: "shu86023"
+      SPRING_DATASOURCE_PASSWORD: "Shubham@86023"
+    ports:
+      - "8000-8010:8002"
+    networks:
+      - skjs-network
+
+  mysqldb:
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_USER: "shu86023"
+      MYSQL_PASSWORD: "Shubham@86023"
+      MYSQL_DATABASE: "skjs_grocery_store"
+      MYSQL_ROOT_PASSWORD: "Shubham@86023"
+
+    networks:
+      - skjs-network
+
+networks:
+  skjs-network:
+    driver: bridge
