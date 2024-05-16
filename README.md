@@ -6,7 +6,7 @@ its price, images and product description.
 
 ## Technology Used-
 ```
-Backend - Java, Spring Boot, Data JPA, REST APIs
-Frontend - HTML, CSS, Bootstrap, JS, Jquery
+Backend - Spring Boot, Microservices, REST APIs, Data JPA, Kafka
+Frontend - Thymeleaf, HTML, CSS, Bootstrap, JS, Jquery
 DB - Mysql
 ```
